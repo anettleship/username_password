@@ -23,12 +23,15 @@ def get_user_credentials(service_id):
     try:
         username = keyring.get_password(service_id, MAGIC_USERNAME_KEY)
         password_retrieved = keyring.get_password(service_id, username)
-        print(username)
-        print(password_retrieved)
+        if password_retrieved == None or username == None:
+            raise Exception('No Username or Password Stored for service_id: {}'.format(service_id))
+        #print(username)
+        #print(password_retrieved)
 
-        return password_retrieved
+        return (username, password_retrieved)
     # If this fails, get input from user and save to keychain for next time.
     except:
+        print('No Username or Password present for this service. Requesting from user...\n')
         # Get Username in the clear, then password hidden as the user types.
         username = input('Input Username: ')
         print('Username Entered: '+username)
@@ -41,4 +44,4 @@ def get_user_credentials(service_id):
         # we're just using some known magic string in the username field
         keyring.set_password(service_id, MAGIC_USERNAME_KEY, username)
 
-        return False
+        return False, False
