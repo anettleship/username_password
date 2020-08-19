@@ -1,14 +1,6 @@
 import keyring
 from getpass import getpass
 
-def user_input(message, hide):
-    """
-    Requests input from the user with the 'message' parameter (string). Hides the input on screen if 'hide' (optional, boolean)
-    is true. Returns the text the user inputs.
-    """
-    inputstr = input(message)
-    return inputstr
-
 def get_user_credentials(service_id):
     """
     Handles saving username and password to the system keychain and retrieving them, using a namespace 'service_id' for the specific
