@@ -1,5 +1,7 @@
 # username_password
-simple python functions to save username and password to users keychain, using keyring module.
+simple python functions to save username and password to users keychain, using keyring module, applying code from this stack overflow thread:
+
+https://stackoverflow.com/questions/7014953/i-need-to-securely-store-a-username-and-password-in-python-what-are-my-options
 
 Handles saving username and password to the system keychain and retrieving them, using a namespace 'service_id' for the specific application to test if username and password are already stored. A single username and password pair is supported for each namespace. To use in your script, make up a namespace for your script that won't be in use already.
 
