@@ -1,7 +1,7 @@
 import passwordings
 
 def main():
-    username = passwordings.user_input('Username:')
+    username = passwordings.user_input('Username:', False)
     print(username)
 
 
