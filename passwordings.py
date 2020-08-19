@@ -36,4 +36,4 @@ def get_user_credentials(service_id):
         # we're just using some known magic string in the username field
         keyring.set_password(service_id, MAGIC_USERNAME_KEY, username)
 
-        return False, False
+        return (False, False)

@@ -2,7 +2,7 @@ import passwordings
 
 def main():
 
-    username, password = passwordings.get_user_credentials('test_password_namespace')
+    username, password = passwordings.get_user_credentials('test_namespace')
 
     if password != False and username != False:
         print("Username retrieved: {}".format(username))
