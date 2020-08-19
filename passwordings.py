@@ -1,3 +1,6 @@
+import keyring
+from getpass import getpass
+
 def user_input(message, hide):
     """
     Requests input from the user with the 'message' parameter (string). Hides the input on screen if 'hide' (optional, boolean)
@@ -20,8 +23,10 @@ def get_user_credentials(service_id):
     try:
         username = keyring.get_password(service_id, MAGIC_USERNAME_KEY)
         password_retrieved = keyring.get_password(service_id, username)
-        print(username_retrieved)
+        print(username)
         print(password_retrieved)
+
+        return password_retrieved
     # If this fails, get input from user and save to keychain for next time.
     except:
         # Get Username in the clear, then password hidden as the user types.
@@ -35,3 +40,5 @@ def get_user_credentials(service_id):
         # optionally, abuse `set_password` to save username onto keyring
         # we're just using some known magic string in the username field
         keyring.set_password(service_id, MAGIC_USERNAME_KEY, username)
+
+        return False
