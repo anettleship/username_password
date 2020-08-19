@@ -1,8 +1,13 @@
 import passwordings
+from getpass import getpass
+
 
 def main():
-    username = passwordings.user_input('Username:', False)
+    # Get Username
+    username = input('Username:')
     print(username)
+    password = getpass()
+    print(password)
 
 
 
