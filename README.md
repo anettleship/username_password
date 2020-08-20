@@ -11,6 +11,8 @@ Usage example:
 
 Place passwordings.py along side your script. test_password_namespace is my example namespace for this script. the function get_user_credentials will try to get a username and password from the keychain and prompt the user to input these if they are not present, saving the result to the keychain under the specified service_id namespace.
 
+Added an optional parameter, when force = True is passed, this will force the function to request credentials from user without checking keychain. Use if keychain parameters do not result in successful login - may be out of date.
+
 Run this once and the user will be prompted to enter username and password. On the second run, these will be retrieved from keychin and printed to the screen.
 
 ----
@@ -23,3 +25,6 @@ username, password = passwordings.get_user_credentials('test_password_namespace'
 if password != False and username != False:
     print("Username retrieved: {}".format(username))
     print("Password retrieved: {}".format(password))
+
+# Force function to re-request credentials from user.
+  username, password = passwordings.get_user_credentials('test_namespace', force = True)
