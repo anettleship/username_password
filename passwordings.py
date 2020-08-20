@@ -1,7 +1,7 @@
 import keyring
 from getpass import getpass
 
-def get_user_credentials(service_id):
+def get_user_credentials(service_id, force = None):
     """
     Handles saving username and password to the system keychain and retrieving them, using a namespace 'service_id' for the specific
     application to test if username and password are already stored. A single username and password pair is supported for each
@@ -17,13 +17,16 @@ def get_user_credentials(service_id):
         password_retrieved = keyring.get_password(service_id, username)
         if password_retrieved == None or username == None:
             raise Exception('No Username or Password Stored for service_id: {}'.format(service_id))
+        # Check optional parameter to force the function to re-request input from user.
+        if force == True:
+            raise Exception('Function was forced to re-request input from user by parameter force = True. for service_id: {}'.format(service_id))
         #print(username)
         #print(password_retrieved)
 
         return (username, password_retrieved)
     # If this fails, get input from user and save to keychain for next time.
     except:
-        print('No Username or Password present for this service. Requesting from user...\n')
+        print('Requesting from user...\n')
         # Get Username in the clear, then password hidden as the user types.
         username = input('Input Username: ')
         print('Username Entered: '+username)
