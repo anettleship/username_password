@@ -1,6 +1,26 @@
 import keyring
 from getpass import getpass
 
+def get_user_credentials_recurse(namespace):
+
+    username, password = get_user_credentials(namespace)
+
+    if password != False and username != False:
+        print("Username retrieved: {}".format(username))
+        print("Password retrieved.")
+    else:
+        print(
+            'Now forcing get_user_credentials to re-request input from user, for when username and password are rejected...')
+
+        # Force function to re-request credentials from user.
+        username, password = get_user_credentials('test_namespace', force=True)
+
+        if password != False and username != False:
+            print("Username retrieved: {}".format(username))
+            print("Password retrieved: {}".format(password))
+
+    return username, password
+
 def get_user_credentials(service_id, force = None):
     """
     Handles saving username and password to the system keychain and retrieving them, using a namespace 'service_id' for the specific
